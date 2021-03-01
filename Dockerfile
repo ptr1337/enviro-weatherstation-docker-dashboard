@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
  && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/tijmenvandenbrink/enviroplus_exporter.git
+RUN git clone https://github.com/tijmenvandenbrink/enviroplus_exporter.git .
 
 COPY requirements.txt .
 
