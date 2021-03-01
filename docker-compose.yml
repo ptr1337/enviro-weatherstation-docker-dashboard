@@ -9,7 +9,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - $PWD/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
   enviroplusexporter:
     build: .
@@ -20,3 +20,9 @@ services:
       - /dev/ttyAMA0
       - /dev/gpiomem
       - /dev/i2c-1
+
+    homekit:
+      build: Dockerfile.homekit
+      network_mode: host
+      container_name: HomeKit
+      restart: unless-stopped
