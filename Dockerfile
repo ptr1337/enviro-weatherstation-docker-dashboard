@@ -6,12 +6,10 @@ RUN apt-get update && apt-get install -y \
     git \
  && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/tijmenvandenbrink/enviroplus_exporter.git .
+RUN git clone https://github.com/tijmenvandenbrink/enviroplus_exporter.git
 
-COPY requirements.txt .
+RUN cd enviroplus_exporter
 
 RUN pip3 install -r requirements.txt
-
-COPY enviroplus_exporter.py .
 
 CMD python3 enviroplus_exporter.py --bind=0.0.0.0 --port=8000 --factor=3
