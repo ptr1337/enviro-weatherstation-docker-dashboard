@@ -6,7 +6,9 @@ RUN apt-get update && apt-get install git -y \
 
 RUN git clone https://github.com/sighmon/homekit-enviroplus .
 
-RUN go get \
-  && go build build homekit-enviroplus.go
+RUN go mod init
+RUN go mod tidy
+RUN go get
+RUN go build homekit-enviroplus.go
 
 CMD homekit-enviroplus.go -port=8000 -host=http://0.0.0.0 -sleep=10s

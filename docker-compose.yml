@@ -21,8 +21,10 @@ services:
       - /dev/gpiomem
       - /dev/i2c-1
 
-    homekit:
-      build: Dockerfile.homekit
-      network_mode: host
-      container_name: HomeKit
-      restart: unless-stopped
+  homekit:
+    build:
+      context: .
+      dockerfile: Dockerfile-homekit
+    network_mode: host
+    container_name: HomeKit
+    restart: unless-stopped
