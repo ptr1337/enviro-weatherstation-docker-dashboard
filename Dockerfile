@@ -3,12 +3,14 @@ FROM ubuntu:20.04
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
+    git \
  && rm -rf /var/lib/apt/lists/*
 
+RUN git clone https://github.com/tijmenvandenbrink/enviroplus_exporter.git
 
-COPY enviroplus_exporter/requirements.txt .
+COPY requirements.txt .
 
-RUN pip3 install -r enviroplus_exporter/requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY enviroplus_exporter.py .
 
