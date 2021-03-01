@@ -1,7 +1,0 @@
-[submodule "homekit-enviroplus"]
-	path = homekit-enviroplus
-	url = https://github.com/rubiojr/homekit-enviroplus.git
-	branch = local-readings
-[submodule "enviroplus_exporter"]
-	path = enviroplus_exporter
-	url = https://github.com/sighmon/enviroplus_exporter

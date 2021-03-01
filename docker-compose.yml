@@ -1,1 +1,22 @@
+version: '3'
 
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: mon_prometheus
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - $PWD/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  enviroplusexporter:
+    build: .
+    network_mode: host
+    container_name: enviroplusexporter
+    restart: unless-stopped
+    devices:
+      - /dev/ttyAMA0
+      - /dev/gpiomem
+      - /dev/i2c-1

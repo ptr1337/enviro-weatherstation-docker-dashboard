@@ -1,24 +1,13 @@
-FROM  ubuntu:latest
-
-WORKDIR /usr/src
-
-COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
+FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y \
     python3 \
-    python3-pip \
-    python3-smbus \
-    python3-pil \
-    libatlas-base-dev \
-    python3-dev \
-    python3-setuptools \
-    python3-numpy
+    python3-pip
 
-RUN pip3 install \
-    enviroplus \
-    requests \
-    spidev \
-    RPi.GPIO \
-    prometheus_client
+COPY enviroplus_exporter/requirements.txt .
 
-CMD ["python3", "enviroplus_exporter.py", "--factor", "2.25"]
+RUN pip3 install -r requirements.txt
+
+COPY enviroplus_exporter.py .
+
+CMD python3 enviroplus_exporter.py --bind=0.0.0.0 --port=8000 --factor=3
